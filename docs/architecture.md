@@ -400,8 +400,11 @@ TASK_OVERDUE   → executive_agent → replan → SUGGEST_REPLAN
 | Area | State |
 |---|---|
 | Architecture & docs | **Designed** (this doc set) |
-| Application code | **Not started** |
-| Every integration (Gmail, Calendar, LinkedIn, Instagram, GitHub, browser, n8n) | **Not connected — interface designed only** |
+| Backend (health, meta, dev auth, profile API) | **Implemented, tested (Phase 1)** |
+| Database schema + migrations (5 core tables) | **Implemented, tested (Phase 1)** |
+| Web dashboard (login, profile, status, placeholders) | **Implemented, build-tested (Phase 1)** |
+| Chat, memory, goals, tasks, tool engine, permission engine | **Not started (Phase 2–3)** |
+| Every integration (Gmail, Calendar, LinkedIn, Instagram, GitHub, browser, n8n) | **Not connected — interface + status registry only** |
 | Every agent | **Specified in `agents.md`, none implemented** |
 | AI providers | **Abstraction designed, no keys configured in environment** |
 

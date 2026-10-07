@@ -1,6 +1,6 @@
 # JARVIS — Roadmap
 
-**Status:** Phase 0 complete (environment analysis + architecture). No application code yet.
+**Status:** Phases 0 and 1 complete (architecture + foundation). Phase 2 next.
 **Last updated:** 2026-10-07
 
 ## Gating rules
@@ -29,22 +29,22 @@ Commit style: `feat: …` / `fix: …` / `test: …` / `docs: …` (conventional
 
 ---
 
-## Phase 1 — Foundation (MVP skeleton)
+## Phase 1 — Foundation ✅ (this stage)
 
-**Goal:** a runnable, tested, honest skeleton: repo structure, backend, frontend, database, auth, basic dashboard.
+**Goal:** a runnable, tested, honest skeleton: repo structure, backend, database, auth, basic dashboard.
 
 **Deliverables**
-- Monorepo scaffold exactly per `architecture.md` §3 (import-layer rules enforced by a test)
-- FastAPI app: health endpoint, versioned `/api/v1`, error contract `{code,message,what_failed,what_happened,what_next}`
-- SQLAlchemy + Alembic: initial migration for `users`, `user_profiles`, `sessions/audit` core tables (SQLite dev / Postgres prod switch via `DATABASE_URL`)
-- Local auth shim (single-user signed session) + the interface Supabase Auth will plug into
-- Next.js app: mobile-first shell, nav skeleton, Dashboard page rendering **real** API data only
-- `.env.example`, `README.md` with setup steps, `scripts/dev.sh` to run api+web together
-- Tests: API health/auth/profile round-trip, migration up/down, layer-import rule, frontend smoke (build passes)
+- [x] Monorepo scaffold exactly per `architecture.md` §3 (import-layer rules enforced by a test)
+- [x] FastAPI app: health endpoint, versioned `/api/v1`, error contract `{code,message,what_failed,what_happened,what_next}`
+- [x] SQLAlchemy + Alembic: initial migration for `users`, `user_profiles`, `sessions`, `audit_logs`, `approvals` (SQLite dev / Postgres prod switch via `DATABASE_URL`)
+- [x] Local auth shim (DB-backed sessions, hashed tokens) + `AuthProvider` interface Supabase Auth will plug into (fails fast if selected)
+- [x] Next.js app: mobile-first shell, nav skeleton, Dashboard page rendering **real** API data only
+- [x] `.env.example`, `README.md`, `scripts/{setup,dev,test}.sh`
+- [x] Tests: API health/auth/profile round-trip + cross-user isolation, migration up/down vs model parity, layer-import rule, frontend production build
 
-**Explicitly NOT in Phase 1:** chat, agents, memory, tasks, integrations, fake widgets.
+**Explicitly NOT in Phase 1:** chat, agents, memory, tasks, goals, integrations, fake widgets.
 
-**Acceptance:** `scripts/test.sh` green; app boots; dashboard shows profile data entered by the user.
+**Acceptance:** ✅ `scripts/test.sh` green (14 backend tests + web build); app booted and verified live (health/login/profile/logout/CORS/HTML routes); dashboard shows profile data entered by the user.
 
 ---
 
@@ -157,8 +157,8 @@ P4–P7 may interleave only after P3 passes; P8 requires P3+P5; P9 requires a wo
 
 | Phase | State | Evidence |
 |---|---|---|
-| 0 Architecture | **Complete** | docs/ present |
-| 1 Foundation | Not started | — |
+| 0 Architecture | **Complete** | docs/ set (architecture, roadmap, security, database, agents) |
+| 1 Foundation | **Complete** | 14 pytest cases + web build green; live API/web verified (health, login, profile, logout, CORS); 8 commits |
 | 2–10 | Not started | — |
 
-**Next action:** implement Phase 1 (project skeleton + backend + database + auth + dashboard), then test it.
+**Next action:** implement Phase 2 (chat, LLM provider abstraction, profile-driven context, memory, goals, tasks).

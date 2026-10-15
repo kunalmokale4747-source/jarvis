@@ -38,9 +38,22 @@ jobs:
 
       - name: Build debug APK
         working-directory: apps/android
-        run: gradle :app:assembleDebug
+        run: |
+          set -o pipefail
+          gradle :app:assembleDebug --warning-mode none 2>&1 | tee gradle-output.log
+          GRADLE_EXIT=${PIPESTATUS[0]}
+          echo "=== Concise build errors ==="
+          grep -E '^(e:|.*error:|Unresolved reference|Cannot infer type|.* FAILED|BUILD FAILED)' gradle-output.log || true
+          if [ "$GRADLE_EXIT" -ne 0 ] && [ -n "${GITHUB_STEP_SUMMARY:-}" ]; then
+            {
+              echo "## Android Build Errors"
+              grep -E '^(e:|.*error:|Unresolved reference|Cannot infer type|.* FAILED|BUILD FAILED)' gradle-output.log || true
+            } >> "$GITHUB_STEP_SUMMARY"
+          fi
+          exit "$GRADLE_EXIT"
 
       - name: Upload debug APK
+        if: success()
         uses: actions/upload-artifact@v4
         with:
           name: jarvis-android-debug

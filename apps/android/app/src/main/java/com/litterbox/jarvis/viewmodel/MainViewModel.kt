@@ -2,8 +2,8 @@ package com.litterbox.jarvis.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.litterbox.jarvis.data.BackendClient
-import com.litterbox.jarvis.data.SettingsStore
+import com.litterbox.jarvis.client.BackendClient
+import com.litterbox.jarvis.client.SettingsStore
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch

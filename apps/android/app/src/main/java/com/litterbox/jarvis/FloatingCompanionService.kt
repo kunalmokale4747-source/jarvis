@@ -39,7 +39,7 @@ class FloatingCompanionService : Service() {
                 gravity = Gravity.CENTER
                 setPadding(24, 24, 24, 24)
             }
-            view.setBackgroundResource(android.R.drawable.stat_happy)
+            view.setBackgroundResource(android.R.drawable.ic_dialog_info)
             val params = WindowManager.LayoutParams(
                 WindowManager.LayoutParams.WRAP_CONTENT,
                 WindowManager.LayoutParams.WRAP_CONTENT,

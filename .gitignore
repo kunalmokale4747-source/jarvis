@@ -19,7 +19,7 @@ out/
 npm-debug.log*
 
 # runtime data
-data/
+/data/
 *.db
 *.sqlite3
 

@@ -3,6 +3,7 @@ from __future__ import annotations
 import integrations as integrations_pkg
 from apps.api.schemas import MetaOut
 from core.config import get_settings
+from core.llm import ai_status
 
 from fastapi import APIRouter
 
@@ -18,4 +19,5 @@ def meta() -> MetaOut:
         phase=settings.current_phase,
         auth_mode=settings.auth_mode,
         integrations=integrations_pkg.status(),
+        ai=ai_status(settings).as_dict(),
     )

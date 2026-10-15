@@ -8,7 +8,7 @@ def test_health_reports_all_components_online(client):
     assert body["status"] == "ok"
     assert body["components"]["api"]["status"] == "online"
     assert body["components"]["database"]["status"] == "online"
-    assert body["phase"] == 1
+    assert body["phase"] == 9
 
 
 def test_meta_reports_honest_integration_status(client):

@@ -24,10 +24,11 @@ export const NAV: NavItem[] = [
   { label: "Business", href: "/s/business", phase: 6 },
   { label: "Social", href: "/s/social", phase: 7 },
   { label: "Analytics", href: "/s/analytics", phase: 9 },
+  { label: "Voice", href: "/voice", phase: 2 },
   { label: "Settings", href: "/settings", phase: 1 },
 ];
 
-export const CURRENT_PHASE = 1;
+export const CURRENT_PHASE = 6;
 
 export const PHASE_TITLES: Record<number, string> = {
   1: "Foundation",

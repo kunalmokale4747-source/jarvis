@@ -9,6 +9,12 @@ def client(tmp_path, monkeypatch):
     monkeypatch.setenv("ENV", "test")
     monkeypatch.setenv("AUTH_MODE", "dev")
     monkeypatch.setenv("DATABASE_URL", f"sqlite:///{tmp_path}/test.db")
+    # Keep the default suite deterministic and credential-free even when .env
+    # contains a locally configured provider.
+    monkeypatch.setenv("LLM_PROVIDER", "")
+    monkeypatch.setenv("LLM_BASE_URL", "")
+    for key in ("OPENAI_API_KEY", "ANTHROPIC_API_KEY", "GEMINI_API_KEY", "GROQ_API_KEY"):
+        monkeypatch.setenv(key, "")
 
     from core.config import reset_settings
     from core.db.base import Base, get_engine, reset_engine

@@ -8,7 +8,16 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 
-DOMAIN_TABLES = {"users", "user_profiles", "sessions", "audit_logs", "approvals"}
+DOMAIN_TABLES = {
+    # Phase 1
+    "users", "user_profiles", "sessions", "audit_logs", "approvals",
+    # Phase 2
+    "memories", "goals", "tasks", "chat_sessions", "chat_messages",
+    # Phase 3
+    "reminders", "notifications",
+    # Phase 4
+    "briefing_settings", "briefing_runs",
+}
 
 
 def _run_alembic(args: list[str], db_path: Path) -> subprocess.CompletedProcess:

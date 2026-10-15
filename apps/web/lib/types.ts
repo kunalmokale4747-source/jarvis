@@ -41,3 +41,49 @@ export interface Profile {
   is_complete: boolean;
   updated_at: string;
 }
+
+export interface Reminder {
+  id: string;
+  user_id: string;
+  title: string;
+  message: string | null;
+  scheduled_at: string;
+  timezone: string;
+  status: "PENDING" | "SCHEDULED" | "FIRED" | "CANCELLED" | "FAILED";
+  recurrence: "none" | "daily" | "weekly" | "monthly" | "yearly";
+  recurrence_interval: number;
+  task_id: string | null;
+  channel: string;
+  last_fired_at: string | null;
+  next_run_at: string | null;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface NotificationItem {
+  id: string;
+  user_id: string;
+  reminder_id: string | null;
+  title: string;
+  body: string | null;
+  channel: string;
+  status: "QUEUED" | "SENT" | "FAILED" | "READ";
+  error: string | null;
+  sent_at: string | null;
+  read_at: string | null;
+  created_at: string;
+}
+
+export interface ChatMessage {
+  id: string;
+  session_id: string;
+  user_id: string;
+  role: "user" | "assistant" | "system";
+  content: string;
+  provider: string | null;
+  model: string | null;
+  input_tokens: number | null;
+  output_tokens: number | null;
+  status: "OK" | "ERROR" | "OFFLINE";
+  created_at: string;
+}
